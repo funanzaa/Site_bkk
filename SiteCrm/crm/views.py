@@ -4,7 +4,7 @@ import pytz
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import *
-# from .forms import *
+from .forms import *
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
