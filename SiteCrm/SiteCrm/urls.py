@@ -23,4 +23,5 @@ urlpatterns = [
     path('about/', views.AboutPage, name="about"),
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
+    path('crm/', include('crm.urls')),
 ]
