@@ -130,11 +130,11 @@ def hospitalAdd(request):
 
 @login_required(login_url='login')
 def hospitalEdit(request, pk):
-    hosptial = Hospitals.objects.get(id=pk)
+    edithosptial = Hospitals.objects.get(id=pk)
     form = editHospitalForm()
-    form.fields['code'].initial  = hosptial.code
-    form.fields['label'].initial  = hosptial.label
-    form.fields['h_type'].initial  = hosptial.h_type
+    form.fields['code'].initial  = edithosptial.code
+    form.fields['label'].initial  = edithosptial.label
+    form.fields['h_type'].initial  = edithosptial.h_type
     if request.method == 'POST':
         form = editHospitalForm(request.POST)
         if form.is_valid():
@@ -143,17 +143,11 @@ def hospitalEdit(request, pk):
             h_type = form.cleaned_data["h_type"]
             hcode = Hospitals.objects.filter(code=code)
             Label = Hospitals.objects.filter(label=label)
-            if hcode:
-                messages.info(request, 'This ' + code +' already')
-            elif Label:
-                messages.info(request, 'This ' + label +' already')
-            else:
-                newHospital = Hospitals()
-                newHospital.code = code
-                newHospital.label = label
-                newHospital.h_type = h_type
-                newHospital.save()
-                return redirect('hospital-page')
+            edithosptial.code = code
+            edithosptial.label = label
+            edithosptial.h_type = h_type
+            edithosptial.save()
+            return redirect('hospital-page')
     context = { 'form': form }
     return render(request, 'cases/edit_hospital.html', context)
 
